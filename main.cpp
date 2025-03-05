@@ -6,7 +6,11 @@
 using namespace std;
 int main(int argc, char *argv[]){
 
-    cout << "Hello World!" << endl;
+    QA Test;
+    cout << "Testing QA update score" << endl;
+    Test.updateScore(-1);
+    cout << "Score: " << Test.getScore() << endl;
+
 
     return 0;
 }
