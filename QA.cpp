@@ -36,8 +36,15 @@ void QA::updateScore(int val){ // Figure out what to do if score equals 0
     }
     else if(val < 0){
         // Able to handle negative values
-        if(score != 0){ // This runs when the score is not 0
-            score += val; //Using += because if its a negative number it's just going to be switched to positive
+        // This runs when the score is not 0
+        score += val; //Using += because if its a negative number it's just going to be switched to positive
+        if(score < 0){
+            score = 0;
         }
     }
+}
+
+std::ostream& operator<<(std::ostream& os, const QA& qa) { 
+    os << qa.question << qa.answer;
+    return os;
 }
