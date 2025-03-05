@@ -30,12 +30,14 @@ int QA::letterCount(){
     return (questionCounter + answerCounter);
 }
 
-void QA::updateScore(int val){
+void QA::updateScore(int val){ // Figure out what to do if score equals 0
     if(val > 0){
         score += val;
     }
     else if(val < 0){
         // Able to handle negative values
-        score += val; //Using += because if its a negative number it's just going to be switched to positive
+        if(score != 0){ // This runs when the score is not 0
+            score += val; //Using += because if its a negative number it's just going to be switched to positive
+        }
     }
 }
