@@ -1,7 +1,11 @@
 #include <iostream>
+#include <cstdlib>
 #include <vector>
 #include <fstream>
 #include <algorithm>
+#include <chrono>
+#include <ctime>
+#include <random>
 #include "buildResultString.h"
 #include "QA.h"
 
@@ -32,10 +36,25 @@ int main(int argc, char *argv[]){
         QA quiz(question,answer);
         quizVector.push_back(quiz);
     }
+     // displays all the questions and answers for the vector
+    cout << "Before Sort: " << endl << endl;
     for(int i = 0; i < quizVector.size(); i++){
         cout << quizVector[i] << endl;
     }
-
+    
+    //Step 3
+    //Randomly select a question and answer pair
+    random_shuffle:srand(unsigned(time(0)));
+    random_shuffle(quizVector.begin(), quizVector.end());
+    cout << "After Sort: " << endl << endl;
+    for(int i = 0; i < quizVector.size(); i++){
+        cout << quizVector[i] << endl;
+    }
+    // allows random shuffle 
+    //Show the question
+    //Collect the input
+    //Display the results
+    
     cout << "Closing file" << endl;
     fp.close();
     return 0;

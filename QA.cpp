@@ -45,6 +45,6 @@ void QA::updateScore(int val){ // Figure out what to do if score equals 0
 }
 
 std::ostream& operator<<(std::ostream& os, const QA& qa) { 
-    os << qa.question << qa.answer;
+    os << "Question:" << qa.question << std::endl << " Answer: " << qa.answer;
     return os;
 }
