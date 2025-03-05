@@ -1,0 +1,4 @@
+#ifndef BUILDRESULTSTRING_H
+#define BUILDRESULTSTRING_H
+
+#endif
