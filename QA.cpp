@@ -1,9 +1,16 @@
+/*
+My Name: Jordan Sowell
+Date: 3/8/2025
+Section: CPSC 1020
+Description: Class of QA cpp file holds the function defintions
+*/
 #include "QA.h"
+#include <vector>
 int QA::score  = 0;
 
 QA::QA(std::string q, std::string a){
-    question = q;
-    answer = a;
+    this->question = q;
+    this->answer = a;
 }
 std::string QA::getQuestion()const{
     return question;
@@ -15,22 +22,21 @@ int QA::getScore(){
     return score;
 }
 int QA::letterCount(){
-    int questionCounter = 0;
-    int answerCounter = 0;
-    for(int i = 0; i < question.size() - 1; i++){
+    int count = 0;
+    for(std::vector<QA>::size_type i = 0; i < question.size(); i++){
         if(answer.at(i) != '\n' && answer.at(i) != ' '){
-            questionCounter++;
+            count++;
         }
     }
     //std::cout << "Question Size: " << questionCounter << std::endl; // test for question
-    for(int i = 0; i < answer.size() - 1; i++){
+    for(std::vector<QA>::size_type i = 0; i < answer.size(); i++){
         if(answer.at(i) != '\n' && answer.at(i) != ' '){
-            answerCounter++;
+            count++;
         }
     }
     //std::cout << "Answer Size: " << answerCounter << std::endl; // test for question
 
-    return questionCounter;
+    return count;
 }
 
 void QA::updateScore(int val){ // Figure out what to do if score equals 0

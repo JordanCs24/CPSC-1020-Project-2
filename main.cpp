@@ -1,3 +1,16 @@
+/*
+My Name: Jordan Sowell
+Date: 3/8/2025
+Section: CPSC 1020
+Description: A program that allows a player to answer quiz questions. The game allows
+adding questions and answers to a database in a simple text file. The program
+asks the questions in the database in random order. The player types an answer
+and hits enter. If the answer is correct, the player is told so and the player earns
+1 point. If the answer is incorrect, the player is told so and the players loses 1
+point. Once all questions have been asked, the program displays how many
+questions have been asked, the number of correct answers, the number of wrong
+answers, and the player’s final score.
+*/
 #include <iostream>
 #include <cstdlib>
 #include <vector>
@@ -36,8 +49,7 @@ int main(int argc, char *argv[]){
         // Extract the substring after the delimiter
         result = correctAnswer.substr(pos+1,rPos - pos - 1);
         
-        }
-        else{
+        }else{
             cout << "Space not found" << endl;
         }
         QA quiz(question,result);
@@ -48,7 +60,7 @@ int main(int argc, char *argv[]){
     srand(unsigned(time(0)));
     random_shuffle(quizVector.begin(), quizVector.end());
 
-    for(int i = 0; i < quizVector.size() - 1; ++i){
+    for(vector<QA>::size_type i = 0; i < quizVector.size(); ++i){
         cout << quizVector[i].getQuestion() << endl;
         cout << "Type your answer: ";
         getline(cin,userAnswer);
@@ -68,9 +80,8 @@ int main(int argc, char *argv[]){
     //cout << "Number of Questions: " << quizVector.size() - 1 << endl;
     //Step 4: Create Build String in cpp file and implement it
     
-    string build = buildResultString(quizVector.size(),amountCorrect,amountWrong);
-    cout << build;
-    cout << "Closing file!" << endl;
+    cout << buildResultString(quizVector.size(),amountCorrect,amountWrong);
+    
     fp.close();
     return 0;
 }

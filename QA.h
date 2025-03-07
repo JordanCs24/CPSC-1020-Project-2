@@ -1,8 +1,13 @@
+/*
+My Name: Jordan Sowell
+Date: 3/8/2025
+Section: CPSC 1020
+Description: Header file of the QA class. It holds the function declarations of the class
+*/
 #ifndef QA_H
 #define QA_H
 #include "buildResultString.h"
 #include <string>
-#include <iostream>
 
 class QA{
 private: 
