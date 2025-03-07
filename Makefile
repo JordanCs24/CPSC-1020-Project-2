@@ -14,8 +14,8 @@ all: $(PROGRAM)
 run: $(PROGRAM)
 	./$(PROGRAM)
 
-$(PROGRAM): main.cpp BuildResultString.cpp QA.cpp
-	$(COMPILER) $(OPTIONS) main.cpp BuildResultString.cpp QA.cpp -o $(PROGRAM)
+$(PROGRAM): main.cpp buildResultString.cpp QA.cpp
+	$(COMPILER) $(OPTIONS) main.cpp buildResultString.cpp QA.cpp -o $(PROGRAM)
 
 clean:
 	rm *.out

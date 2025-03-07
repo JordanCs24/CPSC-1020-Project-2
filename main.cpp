@@ -13,6 +13,8 @@ using namespace std;
 
 int main(int argc, char *argv[]){
     ifstream fp;
+    int amountCorrect = 0;
+    int amountWrong = 0;
     string question;
     string correctAnswer;
     string userAnswer;
@@ -53,17 +55,21 @@ int main(int argc, char *argv[]){
         if(userAnswer == quizVector[i].getAnswer()){
             quizVector[i].updateScore(1);
             cout << "Correct! Current Score: " << quizVector[i].getScore() << endl << endl;
+            ++amountCorrect;
         }else if(userAnswer != quizVector[i].getAnswer()){
             cout << "Wrong Answer! Correct Answer: " << quizVector[i].getAnswer() << endl;
             quizVector[i].updateScore(-1);
             cout << "Current Score: " << quizVector[i].getScore() << endl << endl;
+            ++amountWrong;
         }
         userAnswer.clear();
     }
+
+    //cout << "Number of Questions: " << quizVector.size() - 1 << endl;
+    //Step 4: Create Build String in cpp file and implement it
     
-    cout << "Number of Questions: " << quizVector.size() - 1 << endl;
-    
-    
+    string build = buildResultString(quizVector.size(),amountCorrect,amountWrong);
+    cout << build;
     cout << "Closing file!" << endl;
     fp.close();
     return 0;

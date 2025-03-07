@@ -1,5 +1,6 @@
 #ifndef QA_H
 #define QA_H
+#include "buildResultString.h"
 #include <string>
 #include <iostream>
 
@@ -16,7 +17,6 @@ public:
     static int getScore();
     int letterCount();
     static void updateScore(int val);
-    // Allows for the quizVector in main to be displayed
-    friend std::ostream& operator<<(std::ostream& os, const QA& qa);
+    friend std::string buildResultString(int questions, int correct, int wrong);
 };
 #endif
