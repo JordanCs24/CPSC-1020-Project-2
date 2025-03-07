@@ -2,6 +2,7 @@
 My Name: Jordan Sowell
 Date: 3/8/2025
 Section: CPSC 1020
+Time: 5+ hours
 Description: A program that allows a player to answer quiz questions. The game allows
 adding questions and answers to a database in a simple text file. The program
 asks the questions in the database in random order. The player types an answer
@@ -26,41 +27,39 @@ using namespace std;
 
 int main(int argc, char *argv[]){
     ifstream fp;
-    int amountCorrect = 0;
-    int amountWrong = 0;
-    string question;
-    string correctAnswer;
-    string userAnswer;
-    vector<QA> quizVector;
+    int questionAmount = 0; // Made to check how many questions there are total
+    int amountCorrect = 0; // Checks how many questions the user got correct
+    int amountWrong = 0; // Checks how many questions the user got wrong
+    string question; // Holds the string value of each question 
+    string correctAnswer; // Holds the correct Answer value for the quiz
+    string userAnswer; // What the user an
+    vector<QA> quizVector; // List for each question and answer pair
     
     fp.open(argv[1]);
     if(!fp.is_open()){
-        cout << "File: " << argv[1] << " could not be opened" << endl;
+        cout << "File: " << argv[1] << " could not be opened" << endl; 
+        return 1;
     }
 
-    while(!fp.eof()){ // Reads in the contents of the database.txt file
-        string result;
-        getline(fp, question);
-        getline(fp, correctAnswer);
+    while(getline(fp, question) && getline(fp, correctAnswer)){ // Reads in the contents of the data file
+        string result; // holds the correct results after white space in answer
         size_t pos = correctAnswer.find(" "); // holds the position where there is a space located
-        size_t rPos = correctAnswer.find("\r");
-        //correctAnswer.erase(0,pos);
-        if (pos != std::string::npos) { // FIX: Correct Answers aren't marked as correct
-        // Extract the substring after the delimiter
-        result = correctAnswer.substr(pos+1,rPos - pos - 1);
-        
+        size_t rPos = correctAnswer.find("\r"); // Holds the position where there is a carriage located
+
+        if (pos != std::string::npos) {
+            result = correctAnswer.substr(pos+1,rPos - pos - 1); // Extracts the substring after the delimiter
         }else{
             cout << "Space not found" << endl;
         }
         QA quiz(question,result);
-        quizVector.push_back(quiz);
+        quizVector.push_back(quiz); // pushes quiz into the quizVector list
+        ++questionAmount; 
     }
-    //Step 3
+    
     //Randomly select a question and answer pair
     srand(unsigned(time(0)));
     random_shuffle(quizVector.begin(), quizVector.end());
-
-    for(vector<QA>::size_type i = 0; i < quizVector.size(); ++i){
+    for(int i = 0; i < questionAmount; ++i){
         cout << quizVector[i].getQuestion() << endl;
         cout << "Type your answer: ";
         getline(cin,userAnswer);
@@ -76,18 +75,10 @@ int main(int argc, char *argv[]){
         }
         userAnswer.clear();
     }
-
-    //cout << "Number of Questions: " << quizVector.size() - 1 << endl;
-    //Step 4: Create Build String in cpp file and implement it
     
-    cout << buildResultString(quizVector.size(),amountCorrect,amountWrong);
+    // Puts into the console How many questions was asked, what the user got correct, what they got wrong, and their final score.
+    cout << buildResultString(questionAmount,amountCorrect,amountWrong);
     
-    fp.close();
+    fp.close(); // Closes the input file
     return 0;
 }
-
-
-/*
-if lastchar of string == 
-*/
-//if (line[line.length()-1] == '\r')

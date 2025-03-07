@@ -2,6 +2,7 @@
 My Name: Jordan Sowell
 Date: 3/8/2025
 Section: CPSC 1020
+Time: 1 hour
 Description: Class of QA cpp file holds the function defintions
 */
 #include "QA.h"
@@ -23,27 +24,23 @@ int QA::getScore(){
 }
 int QA::letterCount(){
     int count = 0;
-    for(std::vector<QA>::size_type i = 0; i < question.size(); i++){
-        if(answer.at(i) != '\n' && answer.at(i) != ' '){
+    for(std::vector<QA>::size_type i = 0; i < question.size(); i++){ // Allows for proper handling of the vector question
+        if(answer.at(i) != '\n' && answer.at(i) != ' '){ // Variable count gets incremented if the character is anything but a newline and space
             count++;
         }
     }
-    //std::cout << "Question Size: " << questionCounter << std::endl; // test for question
-    for(std::vector<QA>::size_type i = 0; i < answer.size(); i++){
-        if(answer.at(i) != '\n' && answer.at(i) != ' '){
+    for(std::vector<QA>::size_type i = 0; i < answer.size(); i++){ // Allows for proper handling of the vector question
+        if(answer.at(i) != '\n' && answer.at(i) != ' '){ // Variable count gets incremented if the character is anything but a newline and space
             count++;
         }
     }
-    //std::cout << "Answer Size: " << answerCounter << std::endl; // test for question
 
     return count;
 }
 
-void QA::updateScore(int val){ // Figure out what to do if score equals 0
-    // Able to handle negative values
-    // This runs when the score is not 0
-    score += val; //Using += because if its a negative number it's just going to be switched to positive
-    if(score < 0){
+void QA::updateScore(int val){
+    score += val; // Add and subtracts the value 
+    if(score < 0){ // Doesn't allow for negative numbers
         score = 0;
     }
 }
